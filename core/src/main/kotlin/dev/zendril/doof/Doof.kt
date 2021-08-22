@@ -1,9 +1,13 @@
 package dev.zendril.doof
 
+import com.badlogic.ashley.core.Engine
+import com.badlogic.ashley.core.PooledEngine
 import com.badlogic.gdx.Application
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.utils.viewport.FitViewport
+import dev.zendril.doof.ecs.system.RenderSystem
 import dev.zendril.doof.screen.DoofScreen
 import dev.zendril.doof.screen.GameScreen
 import ktx.app.KtxGame
@@ -16,7 +20,11 @@ class Doof : KtxGame<DoofScreen>() {
         val log = logger<Doof>()
     }
 
+    val gameViewport = FitViewport(9f, 16f)
     val batch: Batch by lazy { SpriteBatch() }
+    val engine: Engine by lazy { PooledEngine().apply {
+        addSystem(RenderSystem(batch, gameViewport))
+    } }
 
     override fun create() {
         Gdx.app.logLevel = Application.LOG_DEBUG
@@ -26,6 +34,7 @@ class Doof : KtxGame<DoofScreen>() {
     }
 
     override fun dispose() {
+        super.dispose()
         log.debug { "dispose called" }
         log.debug { "Sprites in batch: ${(batch as SpriteBatch).maxSpritesInBatch}"}
         batch.dispose()
