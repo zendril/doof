@@ -1,17 +1,14 @@
-package dev.zendril.doof;
+package dev.zendril.doof
 
-import android.os.Bundle;
+import com.badlogic.gdx.backends.android.AndroidApplication
+import android.os.Bundle
+import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
+import dev.zendril.doof.Doof
 
-import com.badlogic.gdx.backends.android.AndroidApplication;
-import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import dev.zendril.doof.Doof;
-
-/** Launches the Android application. */
-public class AndroidLauncher extends AndroidApplication {
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		AndroidApplicationConfiguration configuration = new AndroidApplicationConfiguration();
-		initialize(new Doof(), configuration);
-	}
+/** Launches the Android application.  */
+class AndroidLauncher : AndroidApplication() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initialize(Doof(), AndroidApplicationConfiguration())
+    }
 }
