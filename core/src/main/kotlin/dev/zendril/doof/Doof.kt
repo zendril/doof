@@ -1,10 +1,37 @@
 package dev.zendril.doof
 
-import com.badlogic.gdx.Game
+import com.badlogic.gdx.Application
+import com.badlogic.gdx.Gdx
+import dev.zendril.doof.screen.FirstScreen
+import dev.zendril.doof.screen.SecondScreen
+import ktx.app.KtxGame
+import ktx.app.KtxScreen
+import ktx.log.*
 
-/** [com.badlogic.gdx.ApplicationListener] implementation shared by all platforms.  */
-class Doof : Game() {
+class Doof : KtxGame<KtxScreen>() {
+    companion object {
+        val log = logger<Doof>()
+    }
+
     override fun create() {
-        setScreen(FirstScreen())
+        Gdx.app.logLevel = Application.LOG_DEBUG
+        log.debug { "create called" }
+        addScreen(FirstScreen(this))
+        addScreen(SecondScreen(this))
+        setScreen<FirstScreen>()
+    }
+
+    override fun dispose() {
+        log.debug { "dispose called" }
+    }
+
+    override fun pause() {
+        log.debug { "paused" }
+        super.pause()
+    }
+
+    override fun resume() {
+        log.debug { "resumed" }
+        super.resume()
     }
 }
