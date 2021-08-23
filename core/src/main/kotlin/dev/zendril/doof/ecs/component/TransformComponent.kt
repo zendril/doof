@@ -11,8 +11,12 @@ import ktx.ashley.mapperFor
 
 class TransformComponent : Component, Pool.Poolable, Comparable<TransformComponent> {
     val position = Vector3()
-    val size = Vector2(1f, 1f)
+    val size = Vector2()
     var rotationDeg = 0f
+
+    init {
+        reset()
+    }
 
     override fun reset() {
         position.set(Vector3.Zero)
@@ -29,7 +33,3 @@ class TransformComponent : Component, Pool.Poolable, Comparable<TransformCompone
         val mapper: ComponentMapper<TransformComponent> = mapperFor<TransformComponent>()
     }
 }
-//
-//val Entity.transform: TransformComponent
-//    get() = this[TransformComponent.mapper]
-//        ?: throw KotlinNullPointerException("There is no TransformComponent for Entity $this")

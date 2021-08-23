@@ -3,7 +3,9 @@ package dev.zendril.doof.ecs.component
 import com.badlogic.ashley.core.Component
 import com.badlogic.ashley.core.ComponentMapper
 import com.badlogic.gdx.graphics.g2d.Sprite
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.Pool
+import dev.zendril.doof.UNIT_SCALE
 import ktx.ashley.mapperFor
 
 class GraphicComponent : Component, Pool.Poolable {
@@ -12,6 +14,14 @@ class GraphicComponent : Component, Pool.Poolable {
     override fun reset() {
         sprite.texture = null
         sprite.setColor(1f, 1f, 1f, 1f)
+    }
+
+    fun setSpriteRegion(region: TextureRegion) {
+        sprite.run {
+            setRegion(region)
+            setSize(texture.width * UNIT_SCALE, texture.height * UNIT_SCALE)
+            setOriginCenter()
+        }
     }
 
     companion object {
