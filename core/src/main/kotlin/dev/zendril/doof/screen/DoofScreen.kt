@@ -7,7 +7,8 @@ import dev.zendril.doof.Doof
 import ktx.app.KtxScreen
 
 abstract class DoofScreen(
-    private val game: Doof,
+//    private val game: Doof,
+    val game: Doof,
     val batch: Batch = game.batch,
     val gameViewPort: Viewport = game.gameViewport,
     val engine: Engine = game.engine

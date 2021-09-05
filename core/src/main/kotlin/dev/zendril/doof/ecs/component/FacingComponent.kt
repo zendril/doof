@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Component
 import com.badlogic.ashley.core.ComponentMapper
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
+import java.util.*
 
 class FacingComponent : Component, Pool.Poolable {
 
@@ -20,6 +21,7 @@ class FacingComponent : Component, Pool.Poolable {
     companion object {
         val mapper = mapperFor<FacingComponent>()
     }
+
 }
 
 enum class FacingDirection {

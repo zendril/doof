@@ -15,7 +15,7 @@ import ktx.ashley.get
 private const val TOUCH_TOLERANCE_DISTANCE = 0.2f
 
 class PlayerInputSystem(private val gameViewport: Viewport) :
-    IteratingSystem(allOf(PlayerComponent::class, FacingComponent::class).get()) {
+    IteratingSystem(allOf(PlayerComponent::class, TransformComponent::class, FacingComponent::class).get()) {
 
     private val tmpVec = Vector2()
 
